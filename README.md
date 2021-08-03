@@ -5,7 +5,7 @@
 - You should have a React project ready to use. If not, create one in the terminal by running the command 
 
 ```
-**npx create-react-app "YourProjectName"**
+npx create-react-app "YourProjectName"
 ```
 
 **WHY EMAILJS?** 
