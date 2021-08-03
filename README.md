@@ -2,7 +2,11 @@
 
 
 **PREREQUISITE:** 
-- You should have a React project ready to use. If not, create one in the terminal by running the command npx create-react-app "YourProjectName"
+- You should have a React project ready to use. If not, create one in the terminal by running the command 
+
+```
+**npx create-react-app "YourProjectName"**
+```
 
 **WHY EMAILJS?** 
 
@@ -10,7 +14,7 @@
 
 - Looks much better than using the default anchor tag with a mailto: in the href.
 
-- Very easy to use and comes with a lot of built-in functionality. 
+- Very easy to use and comes with a lot of built-in functionality. No need to worry about managing state or multiple variables. EmailJS takes care of everything for us.
 
 
 
@@ -81,10 +85,9 @@ Click **"Save"**
 
 - Next let's add a **Components** folder in src and add a **ContactForm** folder with **ContactForm.css** and **ContactForm.js** inside.
 
-- Inside of **ContactForm.j**s let's import React, EmailJS and our CSS.
+- Inside of **ContactForm.j**s let's import EmailJS and our CSS.
 
 ```
- import React from "react";
  import emailjs from "emailjs-com";
  import "./ContactForm.css";
 ```
@@ -128,11 +131,12 @@ export default function ContactForm() {
 ```
  function sendEmail(e) {
       e.preventDefault();
-      emailjs.sendForm(
-            "YOUR_SERVICE_ID",
-            "YOUR_TEMPLATE_ID",
+      emailjs
+         .sendForm(
+            "service_uxf9k9t",
+            "template_9najqho",
             e.target,
-            "YOUR_USER_ID"
+            "user_F2z1Oy9s2pnH2gQ7BHGid"
          )
          .then(
             result => {
@@ -162,7 +166,7 @@ export default function ContactForm() {
     - Your Service ID can be found under the "Email Services" tab.
 
     - Your Template ID can be found under the "Email Templates" tab.
-    
+
     - Your User ID can be found under the "Integration" tab
 
 
@@ -170,15 +174,18 @@ export default function ContactForm() {
 
 
 ```
+import emailjs from "emailjs-com";
+import "./ContactForm.css";
+
 export default function ContactForm() {
    function sendEmail(e) {
       e.preventDefault();
       emailjs
          .sendForm(
-            "YOUR_SERVICE_ID",
-            "YOUR_TEMPLATE_ID",
+            "service_uxf9k9t",
+            "template_9najqho",
             e.target,
-            "YOUR_USER_ID"
+            "user_F2z1Oy9s2pnH2gQ7BHGid"
          )
          .then(
             result => {
@@ -193,7 +200,6 @@ export default function ContactForm() {
 
    return (
       <form className="contact-form" onSubmit={sendEmail}>
-         <input type="hidden" name="contact_number" />
          <label>Name</label>
          <input type="text" name="user_name" />
          <label>Email</label>
@@ -204,6 +210,7 @@ export default function ContactForm() {
       </form>
    );
 }
+
 ```
 
 
