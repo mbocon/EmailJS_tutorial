@@ -36,7 +36,7 @@ WHY EMAILJS?
 - Click on "Email Templates" and then "Create New Template"
 
 - Let's modify this so we can easily identify emails coming from EmailJs
-
+```
 Hello,
 
 You got a new message.
@@ -53,7 +53,7 @@ Message Info:
 
 Best wishes,
 EmailJS team
-
+```
 Click "Save"
 
 
