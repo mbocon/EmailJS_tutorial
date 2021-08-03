@@ -81,11 +81,160 @@ Click **"Save"**
 
 - Open up our App.js file and delete everything within the main div.
 
-- Let's add a header, main and footer section to App.js (*if using a new React project*)
+- Let's add a header, main and footer section to our App.js (*if using a new React project*)
+
+   - **NOTE** Ideally, you would want to place your header and footer into their own folders within the Components folder, but for the sake of time and since that's not the main focus of this lesson we will go with the following code:
+
+```
+import './App.css';
+
+function App() {
+  let year = new Date();
+  year = year.getFullYear();
+
+  return (
+    <div className="App">
+      <header>
+        <nav>
+          <ul>
+            <li><a href="/link1">Link 1</a></li>
+            <li><a href="/link2">Link 2</a></li>
+            <li><a href="/link3">Link 3</a></li>
+            <li><a href="/link4">Link 4</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+         {/* ContactForm goes here */}
+      </main>
+      <footer>
+        <p>All Rights Reverved &copy; {year}</p>
+      </footer>
+    </div>
+  );
+}
+
+export default App;
+
+```
+
+- Let's add the following CSS to our App.css file
+
+```
+* {
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
+ }
+ 
+.App {
+   text-align: center;
+}
+
+header {
+   width: 100vw;
+   height: 10vh;
+   border-bottom: 1px solid #000;
+}
+
+nav {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: #f5f5f5;
+   height: 100%;
+   width: 100%;
+}
+
+nav > ul {
+   display: flex;
+   width: 100%;
+   justify-content: space-evenly;
+   list-style: none;
+}
+
+nav > ul > li > a {
+   text-decoration: none;
+   color: #000;
+}
+
+nav > ul > li > a:hover {
+   -webkit-text-decoration: default;
+   text-decoration: default;
+   color: #3f3f3f;
+   border-bottom: 1px solid;
+}
+
+main {
+   background-color: #f1f1f1;
+   height: 80vh;
+   padding: 2rem;
+}
+
+footer {
+   background-color: #f5f5f5;
+   height: 10vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-top: 1px solid;
+}
+
+```
+
 
 - Next let's add a **Components** folder in src and add a **ContactForm** folder with **ContactForm.css** and **ContactForm.js** inside.
 
-- Inside of **ContactForm.j**s let's import EmailJS and our CSS.
+- Before coding our **ContactForm Component** let's add the following CSS to our **ContactForm.css** file
+
+
+```
+.contact {
+   background-color: #95deff;
+   height: 100%;
+   padding: 1rem;
+   box-shadow: 1px 1px 10px 1px #000;
+}
+
+.contact-form {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+}
+
+.contact-form > input {
+   height: 2rem;
+   width: 50%;
+   margin: 0.5rem auto;
+}
+
+.contact-form > input:focus,
+.contact-form > textarea:focus {
+   outline-color: #ffe3b0 !important;
+}
+
+.contact-form > textarea {
+   height: 50%;
+   width: 75%;
+   margin: 0.5rem auto;
+   padding: 10px;
+}
+
+.contact-form > input[type="submit"] {
+   width: 250px;
+   text-transform: uppercase;
+}
+
+.contact-form > input[type="submit"]:hover {
+   color: #f5f5f5;
+   background-color: #00000040;
+   cursor: pointer;
+}
+
+```
+
+
+- Inside of **ContactForm.js** let's import EmailJS and our CSS.
 
 ```
  import emailjs from "emailjs-com";
@@ -249,6 +398,5 @@ export default function ContactForm() {
 
 
 - Next let's go to App.js and import our ContactForm and render it in our main section.
-
 
 - Let's send a test email. And Voila! You successfully incorporated EmailJs into your React app! 
