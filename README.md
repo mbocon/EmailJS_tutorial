@@ -133,10 +133,10 @@ export default function ContactForm() {
       e.preventDefault();
       emailjs
          .sendForm(
-            "service_uxf9k9t",
-            "template_9najqho",
+            "YOUR_SERVICE_ID",
+            "YOUR_TEMPLATE_ID",
             e.target,
-            "user_F2z1Oy9s2pnH2gQ7BHGid"
+            "YOUR_USER_ID"
          )
          .then(
             result => {
@@ -182,10 +182,10 @@ export default function ContactForm() {
       e.preventDefault();
       emailjs
          .sendForm(
-            "service_uxf9k9t",
-            "template_9najqho",
+            "YOUR_SERVICE_ID",
+            "YOUR_TEMPLATE_ID",
             e.target,
-            "user_F2z1Oy9s2pnH2gQ7BHGid"
+            "YOUR_USER_ID"
          )
          .then(
             result => {
