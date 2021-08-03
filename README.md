@@ -110,15 +110,32 @@ export default function ContactForm() {
 ```
 export default function ContactForm() {
    return (
-      <form className="contact-form" onSubmit={sendEmail}>
-         <label>Name</label>
-         <input type="text" name="user_name" />
-         <label>Email</label>
-         <input type="email" name="user_email" />
-         <label>Message</label>
-         <textarea name="message" />
-         <input type="submit" value="Send" />
-      </form>
+     <div className="contact">
+         <form className="contact-form" onSubmit={sendEmail}>
+            <label>Name</label>
+            <input
+               type="text"
+               name="user_name"
+               placeholder="Hello there!"
+               autoFocus
+               required
+            />
+            <label>Email</label>
+            <input
+               type="email"
+               name="user_email"
+               placeholder="What's this [ hip, hip ] ?"
+               required
+            />
+            <label>Message</label>
+            <textarea
+               name="message"
+               placeholder="It's a hip hip array!"
+               required
+            />
+            <input type="submit" value="Send" />
+         </form>
+      </div>
    );
 }
 ```
@@ -126,7 +143,7 @@ export default function ContactForm() {
 **NOTE:** the name fields for the inputs must be exactly as demonstrated above. This is how EmailJS expects to recieve this information from your form.
 
 
-- Lastly, let's add our sendEmail function above the return.
+- Lastly, let's add our **sendEmail** function above the return.
 
 ```
  function sendEmail(e) {
@@ -151,7 +168,7 @@ export default function ContactForm() {
 
 ```
 
-- According to the EmailJS documentation the emailjs.sendForm function accepts four (4) arguments in the following order.
+- According to the EmailJS documentation the **emailjs.sendForm** function accepts four (4) arguments in the following order.
 
 
     - "YOUR_SERVICE_ID",
@@ -199,15 +216,32 @@ export default function ContactForm() {
    }
 
    return (
-      <form className="contact-form" onSubmit={sendEmail}>
-         <label>Name</label>
-         <input type="text" name="user_name" />
-         <label>Email</label>
-         <input type="email" name="user_email" />
-         <label>Message</label>
-         <textarea name="message" />
-         <input type="submit" value="Send" />
-      </form>
+       <div className="contact">
+         <form className="contact-form" onSubmit={sendEmail}>
+            <label>Name</label>
+            <input
+               type="text"
+               name="user_name"
+               placeholder="Hello there!"
+               autoFocus
+               required
+            />
+            <label>Email</label>
+            <input
+               type="email"
+               name="user_email"
+               placeholder="What's this [ hip, hip ] ?"
+               required
+            />
+            <label>Message</label>
+            <textarea
+               name="message"
+               placeholder="It's a hip hip array!"
+               required
+            />
+            <input type="submit" value="Send" />
+         </form>
+      </div>
    );
 }
 

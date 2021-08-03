@@ -23,14 +23,31 @@ export default function ContactForm() {
    }
 
    return (
-      <form className="contact-form" onSubmit={sendEmail}>
-         <label>Name</label>
-         <input type="text" name="user_name" />
-         <label>Email</label>
-         <input type="email" name="user_email" />
-         <label>Message</label>
-         <textarea name="message" />
-         <input type="submit" value="Send" />
-      </form>
+      <div className="contact">
+         <form className="contact-form" onSubmit={sendEmail}>
+            <label>Name</label>
+            <input
+               type="text"
+               name="user_name"
+               placeholder="Hello there!"
+               autoFocus
+               required
+            />
+            <label>Email</label>
+            <input
+               type="email"
+               name="user_email"
+               placeholder="What's this [ hip, hip ] ?"
+               required
+            />
+            <label>Message</label>
+            <textarea
+               name="message"
+               placeholder="It's a hip hip array!"
+               required
+            />
+            <input type="submit" value="Send" />
+         </form>
+      </div>
    );
 }
