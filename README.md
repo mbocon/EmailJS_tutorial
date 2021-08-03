@@ -76,9 +76,11 @@ Click "Save"
 
 - Inside of ContactForm.js let's import React, EmailJS and our CSS.
 
- - import React from "react";
- - import emailjs from "emailjs-com";
- - import "./ContactForm.css";
+```
+ import React from "react";
+ import emailjs from "emailjs-com";
+ import "./ContactForm.css";
+```
 
 - Next lets create our ContactForm function.
 
