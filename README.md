@@ -1,16 +1,25 @@
 ## EmailJS Tutorial
 
-Prerequisite: You should have a React project ready to use. If not create one in the terminal by running the command npx create-react-app YourAppName
+
+PREREQUISITE: You should have a React project ready to use. If not create one in the terminal by running the command npx create-react-app YourAppName
 
 WHY EMAILJS? 
 
 - EmailJS allows you to incorporate an email form on the front end with no need for a backend or any server side code. This can be a great feature for front-end only portfolio sites. This prevents you from having to use the default anchor tag with a mailto: in the href.
 
-# Step 1) Create an EmailJS Account
+
+
+## Step 1) Create an EmailJS Account
+
+
 
 - Go to https://www.emailjs.com/ and create an account. To use with a portfolio the free acount plan is more than enough, you get up to 200 emails per month.
 
-# Step 2) Configuring EmailJS
+
+
+## Step 2) Configuring EmailJS
+
+
 
 - Once you've created your emailJS account, you will need to configure an email service as well as an email template to organize the content that will come from your React form.
 
@@ -18,7 +27,11 @@ WHY EMAILJS?
 
 - Select all 3 options. Click continue then click "Create Service"
 
-# Step 3) Build Your Email Template
+
+
+## Step 3) Build Your Email Template
+
+
 
 - Click on "Email Templates" and then "Create New Template"
 
@@ -36,14 +49,18 @@ User Info:
 
 Message Info:
 
-   {{message}}
+    {{message}}
 
 Best wishes,
 EmailJS team
 
 Click "Save"
 
-# Step 4) 
+
+
+## Step 4) 
+
+
 
 - Installing our dependancies and building out our components.
 
@@ -59,20 +76,23 @@ Click "Save"
 
 - Inside of ContactForm.js let's import React, EmailJS and our CSS.
 
-import React from "react";
-import emailjs from "emailjs-com";
-import "./ContactForm.css";
+ - import React from "react";
+ - import emailjs from "emailjs-com";
+ - import "./ContactForm.css";
 
 - Next lets create our ContactForm function.
 
+```
 export default function ContactForm() {
     return(
 
     )
 }
+```
 
 - Then let's add our form inside the return.
 
+```
 export default function ContactForm() {
    return (
       <form className="contact-form" onSubmit={sendEmail}>
@@ -86,14 +106,15 @@ export default function ContactForm() {
       </form>
    );
 }
+```
 
 - Lastly, let's add our sendEmail function above our return.
 
 - According to the EmailJS documentation the emailjs.sendForm() function accepts four (4) argument in the following order.
-    a) "YOUR_SERVICE_ID",
-    b) "YOUR_TEMPLATE_ID",
-    c) e.target,
-    d) "YOUR_USER_ID"
+    - "YOUR_SERVICE_ID",
+    - "YOUR_TEMPLATE_ID",
+    - e.target,
+    - "YOUR_USER_ID"
 
 - Let's navigate to our EmailJS dashboard and retrieve the three pieces of information we need.
     - Your Service ID can be found by clicking on the "Email Services" tab.
@@ -102,6 +123,8 @@ export default function ContactForm() {
 
 - Our completed ContactForm component will look like this:
 
+
+```
 export default function ContactForm() {
    function sendEmail(e) {
       e.preventDefault();
@@ -136,6 +159,7 @@ export default function ContactForm() {
       </form>
    );
 }
+```
 
 - Next let's go to App.js and import our ContactForm and render it in our main section.
 
