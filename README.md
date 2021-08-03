@@ -75,7 +75,7 @@ Click **"Save"**
 
 **Installing our dependancies and building out our components.**
 
-- Open the terminal and run the command **"npm i emailjs"**.
+- Open the terminal and run the command **"npm i emailjs-com"**.
 
 - Now lets start our server, run **"npm  start"** or **"npm run start"**.
 
