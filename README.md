@@ -8,6 +8,8 @@
 
 - EmailJS allows you to incorporate an email form on the front-end with no need for a backend or any server side code. This can be a great feature for front-end only portfolio sites. This prevents you from having to use the default anchor tag with a mailto: in the href.
 
+- Very easy to use and comes with a lot of built-in functionality. 
+
 
 
 ## Step 1) Create an Account
