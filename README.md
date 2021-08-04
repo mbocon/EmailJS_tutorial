@@ -764,11 +764,11 @@ export default function ContactForm() {
 
 - Let's send a test email. And Voila! You successfully incorporated EmailJs into your React app! 
 
-** Bonus Challenge
+## Bonus Challenge
 
 - Refactor the logic in the filled function. Can you think of a way to create this functionality with a lot less code?
 
-** Super bonus
+## Super bonus
 
 - Wait to dynamically change the className from required to filled in our email span, only if the user enters a valid email.
   - **HINT** Look into email validation using RegEx.
