@@ -25,25 +25,28 @@ export default function ContactForm() {
    return (
       <div className="contact">
          <form className="contact-form" onSubmit={sendEmail}>
-            <label>Name</label>
+            <label htmlFor="name">Name</label>
             <input
                type="text"
                name="user_name"
                placeholder="Hello there!"
+               id="name"
                autoFocus
                required
             />
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
             <input
                type="email"
                name="user_email"
                placeholder="What's this [ hip, hip ] ?"
+               id="email"
                required
             />
-            <label>Message</label>
+            <label htmlFor="message">Message</label>
             <textarea
                name="message"
                placeholder="It's a hip hip array!"
+               id="message"
                required
             />
             <input type="submit" value="Send" />
