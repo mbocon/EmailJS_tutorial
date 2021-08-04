@@ -75,7 +75,11 @@ Click **"Save"**
 
 **Installing our dependancies and building out our components.**
 
-- Open the terminal and run the command **"npm i emailjs-com"**.
+- Open the terminal and run the command:
+
+```
+ npm i emailjs-com @fortawesome/free-brands-svg-icons @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome @fortawesome/fontawesome-svg-core
+```
 
 - Now lets start our server, run **"npm  start"** or **"npm run start"**.
 
@@ -87,11 +91,9 @@ Click **"Save"**
 
 ```
 import './App.css';
+import ContactForm from './Components/ContactForm/ContactForm';
 
 function App() {
-  let year = new Date();
-  year = year.getFullYear();
-
   return (
     <div className="App">
       <header>
@@ -105,10 +107,10 @@ function App() {
         </nav>
       </header>
       <main>
-         {/* ContactForm goes here */}
+        <ContactForm />
       </main>
       <footer>
-        <p>All Rights Reverved &copy; {year}</p>
+        <p>All Rights Reverved &copy; {new Date().getFullYear()}</p>
       </footer>
     </div>
   );
@@ -116,17 +118,19 @@ function App() {
 
 export default App;
 
+
 ```
 
 - Let's add the following CSS to our App.css file
 
 ```
+
 * {
    box-sizing: border-box;
    padding: 0;
    margin: 0;
- }
- 
+}
+
 .App {
    text-align: center;
 }
@@ -180,6 +184,7 @@ footer {
    border-top: 1px solid;
 }
 
+
 ```
 
 
@@ -189,8 +194,9 @@ footer {
 
 
 ```
+
 .contact {
-   background-color: #95deff;
+   background-color: #00bec8;
    height: 100%;
    padding: 1rem;
    box-shadow: 1px 1px 10px 1px #000;
@@ -202,15 +208,17 @@ footer {
    flex-direction: column;
 }
 
+.contact-form > label {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
 .contact-form > input {
    height: 2rem;
    width: 50%;
    margin: 0.5rem auto;
-}
-
-.contact-form > input:focus,
-.contact-form > textarea:focus {
-   outline-color: #ffe3b0 !important;
+   padding: 5px;
 }
 
 .contact-form > textarea {
@@ -231,14 +239,85 @@ footer {
    cursor: pointer;
 }
 
+.alert {
+   text-align: center;
+   padding: 10px;
+   font-size: 1.2rem;
+   font-weight: 600;
+   background: #00df6c;
+   border-radius: 0 3rem 0 3rem;
+}
+
+.required {
+   color: #ff4400;
+   font-size: 6px;
+   margin-left: 0.3rem;
+}
+
+.filled {
+   color: #1aff00;
+   font-size: 6px;
+   margin-left: 0.3rem;
+}
+
+/*
+=======================================
+==>        Animations  
+=========================================
+*/
+
+.animated {
+   -webkit-animation-duration: 1s;
+   animation-duration: 1s;
+   -webkit-animation-fill-mode: both;
+   animation-fill-mode: both;
+}
+
+.fadeInUp {
+   -webkit-animation-name: fadeInUp;
+   animation-name: fadeInUp;
+}
+
+/************************
+ =       Fade UP
+ *************************/
+
+@keyframes fadeInUp {
+   from {
+      opacity: 0;
+      visibility: hidden;
+      -webkit-transform: translate3d(0, 40px, 0);
+      transform: translate3d(0, 40px, 0);
+   }
+
+   to {
+      visibility: visible;
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+   }
+}
+
+/*
+ =======================================
+ ==>        END-Animations  
+ =======================================
+ */
+
+
+
 ```
 
 
-- Inside of **ContactForm.js** let's import EmailJS and our CSS.
+- Inside of **ContactForm.js** let's import useState, EmailJS and our CSS along with some FontAwesome icons.
 
 ```
+ import { useState } from "react"; 
  import emailjs from "emailjs-com";
  import "./ContactForm.css";
+ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+ import { faCircle } from "@fortawesome/free-solid-svg-icons";
+ 
 ```
 
 - Next lets setup our ContactForm component.
@@ -252,39 +331,94 @@ export default function ContactForm() {
 }
 ```
 
+- Then we will add our state variables.
+
+```
+export default function ContactForm() {
+   const [messageSent, setMessageSent] = useState(false);
+   const [isFilled, setisFilled] = useState({
+      name: false,
+      email: false,
+      message: false,
+   });
+
+    return(
+
+    )
+}
+```
 
 - Then let's add our form inside the return.
 
 
 ```
 export default function ContactForm() {
-   return (
+   const [messageSent, setMessageSent] = useState(false);
+   const [isFilled, setisFilled] = useState({
+      name: false,
+      email: false,
+      message: false,
+   });
+   
+    return(
      <div className="contact">
+         {messageSent ? (
+            <div className="alert animated fadeInUp">
+               Your message has been sent
+            </div>
+         ) : (
+            ""
+         )}
          <form className="contact-form" onSubmit={sendEmail}>
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">
+               Name
+               <span className={isFilled.name === true ? "filled" : "required"}>
+                  <FontAwesomeIcon icon={faCircle} />
+               </span>
+            </label>
             <input
                type="text"
                name="user_name"
                placeholder="Hello there!"
                id="name"
                autoFocus
+               onChange={filled}
                required
             />
-            <label htmlFor="email">Email</label>
+
+            <label htmlFor="email">
+               Email
+               <span
+                  className={isFilled.email === true ? "filled" : "required"}
+               >
+                  <FontAwesomeIcon icon={faCircle} />
+               </span>
+            </label>
             <input
                type="email"
                name="user_email"
                placeholder="What's this [ hip, hip ] ?"
                id="email"
+               onChange={filled}
                required
             />
-            <label htmlFor="message">Message</label>
+
+            <label htmlFor="message">
+               Message
+               <span
+                  className={isFilled.message === true ? "filled" : "required"}
+               >
+                  <FontAwesomeIcon icon={faCircle} />
+               </span>
+            </label>
             <textarea
                name="message"
                placeholder="It's a hip hip array!"
                id="message"
+               onChange={filled}
                required
             />
+
             <input type="submit" value="Send" />
          </form>
       </div>
@@ -294,11 +428,95 @@ export default function ContactForm() {
 
 **NOTE:** the name fields for the inputs must be exactly as demonstrated above. This is how EmailJS expects to recieve this information from your form.
 
-
-- Lastly, let's add our **sendEmail** function above the return.
+- Now we will write our onChange filled function.
 
 ```
- function sendEmail(e) {
+
+function filled(e) {
+      const nameField = document.getElementById("name");
+      const emailField = document.getElementById("email");
+      const messageField = document.getElementById("message");
+
+      if (nameField.value.length !== 0) {
+         setisFilled({
+            name: true,
+            email: false,
+            message: false,
+         });
+      }
+
+      if (emailField.value.length !== 0) {
+         setisFilled({
+            name: false,
+            email: true,
+            message: false,
+         });
+      }
+
+      if (messageField.value.length !== 0) {
+         setisFilled({
+            name: false,
+            email: false,
+            message: true,
+         });
+      }
+
+      if (nameField.value.length !== 0 && emailField.value.length !== 0) {
+         setisFilled({
+            name: true,
+            email: true,
+            message: false,
+         });
+      }
+
+      if (nameField.value.length !== 0 && messageField.value.length !== 0) {
+         setisFilled({
+            name: true,
+            email: false,
+            message: true,
+         });
+      }
+
+      if (emailField.value.length !== 0 && messageField.value.length !== 0) {
+         setisFilled({
+            name: false,
+            email: true,
+            message: true,
+         });
+      }
+
+      if (
+         nameField.value.length !== 0 &&
+         emailField.value.length !== 0 &&
+         messageField.value.length !== 0
+      ) {
+         setisFilled({
+            name: true,
+            email: true,
+            message: true,
+         });
+      }
+
+      if (
+         nameField.value.length === 0 &&
+         emailField.value.length === 0 &&
+         messageField.value.length === 0
+      ) {
+         setisFilled({
+            name: false,
+            email: false,
+            message: false,
+         });
+      }
+   }
+
+```
+
+
+- Lastly, let's add our **sendEmail** function above the filled function.
+
+```
+  function sendEmail(e) {
       e.preventDefault();
       emailjs
          .sendForm(
@@ -310,6 +528,15 @@ export default function ContactForm() {
          .then(
             result => {
                console.log(result.text);
+               setMessageSent(true);
+               setTimeout(() => {
+                  setMessageSent(false);
+                  setisFilled({
+                     name: false,
+                     email: false,
+                     message: false,
+                  });
+               }, 3000);
             },
             error => {
                console.log(error.text);
@@ -343,10 +570,20 @@ export default function ContactForm() {
 
 
 ```
+import { useState } from "react";
 import emailjs from "emailjs-com";
 import "./ContactForm.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default function ContactForm() {
+   const [messageSent, setMessageSent] = useState(false);
+   const [isFilled, setisFilled] = useState({
+      name: false,
+      email: false,
+      message: false,
+   });
+
    function sendEmail(e) {
       e.preventDefault();
       emailjs
@@ -359,6 +596,15 @@ export default function ContactForm() {
          .then(
             result => {
                console.log(result.text);
+               setMessageSent(true);
+               setTimeout(() => {
+                  setMessageSent(false);
+                  setisFilled({
+                     name: false,
+                     email: false,
+                     message: false,
+                  });
+               }, 3000);
             },
             error => {
                console.log(error.text);
@@ -367,38 +613,149 @@ export default function ContactForm() {
       e.target.reset();
    }
 
+   function filled(e) {
+      const nameField = document.getElementById("name");
+      const emailField = document.getElementById("email");
+      const messageField = document.getElementById("message");
+
+      if (nameField.value.length !== 0) {
+         setisFilled({
+            name: true,
+            email: false,
+            message: false,
+         });
+      }
+
+      if (emailField.value.length !== 0) {
+         setisFilled({
+            name: false,
+            email: true,
+            message: false,
+         });
+      }
+
+      if (messageField.value.length !== 0) {
+         setisFilled({
+            name: false,
+            email: false,
+            message: true,
+         });
+      }
+
+      if (nameField.value.length !== 0 && emailField.value.length !== 0) {
+         setisFilled({
+            name: true,
+            email: true,
+            message: false,
+         });
+      }
+
+      if (nameField.value.length !== 0 && messageField.value.length !== 0) {
+         setisFilled({
+            name: true,
+            email: false,
+            message: true,
+         });
+      }
+
+      if (emailField.value.length !== 0 && messageField.value.length !== 0) {
+         setisFilled({
+            name: false,
+            email: true,
+            message: true,
+         });
+      }
+
+      if (
+         nameField.value.length !== 0 &&
+         emailField.value.length !== 0 &&
+         messageField.value.length !== 0
+      ) {
+         setisFilled({
+            name: true,
+            email: true,
+            message: true,
+         });
+      }
+
+      if (
+         nameField.value.length === 0 &&
+         emailField.value.length === 0 &&
+         messageField.value.length === 0
+      ) {
+         setisFilled({
+            name: false,
+            email: false,
+            message: false,
+         });
+      }
+   }
+
    return (
-       <div className="contact">
+      <div className="contact">
+         {messageSent ? (
+            <div className="alert animated fadeInUp">
+               Your Message has been sent
+            </div>
+         ) : (
+            ""
+         )}
          <form className="contact-form" onSubmit={sendEmail}>
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">
+               Name{" "}
+               <span className={isFilled.name === true ? "filled" : "required"}>
+                  <FontAwesomeIcon icon={faCircle} />
+               </span>
+            </label>
             <input
                type="text"
                name="user_name"
                placeholder="Hello there!"
                id="name"
                autoFocus
+               onChange={filled}
                required
             />
-            <label htmlFor="email">Email</label>
+
+            <label htmlFor="email">
+               Email{" "}
+               <span
+                  className={isFilled.email === true ? "filled" : "required"}
+               >
+                  <FontAwesomeIcon icon={faCircle} />
+               </span>
+            </label>
             <input
                type="email"
                name="user_email"
                placeholder="What's this [ hip, hip ] ?"
                id="email"
+               onChange={filled}
                required
             />
-            <label htmlFor="message">Message</label>
+
+            <label htmlFor="message">
+               Message{" "}
+               <span
+                  className={isFilled.message === true ? "filled" : "required"}
+               >
+                  <FontAwesomeIcon icon={faCircle} />
+               </span>
+            </label>
             <textarea
                name="message"
                placeholder="It's a hip hip array!"
                id="message"
+               onChange={filled}
                required
             />
+
             <input type="submit" value="Send" />
          </form>
       </div>
    );
 }
+
 
 ```
 
@@ -406,3 +763,12 @@ export default function ContactForm() {
 - Next let's go to App.js and import our ContactForm and render it in our main section.
 
 - Let's send a test email. And Voila! You successfully incorporated EmailJs into your React app! 
+
+** Bonus Challenge
+
+- Refactor the logic in the filled function. Can you think of a way to create this functionality with a lot less code?
+
+** Super bonus
+
+- Wait to dynamically change the className from required to filled in our email span, only if the user enters a valid email.
+  - **HINT** Look into email validation using RegEx.

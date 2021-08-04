@@ -2,9 +2,6 @@ import './App.css';
 import ContactForm from './Components/ContactForm/ContactForm';
 
 function App() {
-  let year = new Date();
-  year = year.getFullYear();
-
   return (
     <div className="App">
       <header>
@@ -21,7 +18,7 @@ function App() {
         <ContactForm />
       </main>
       <footer>
-        <p>All Rights Reverved &copy; {year}</p>
+        <p>All Rights Reverved &copy; {new Date().getFullYear()}</p>
       </footer>
     </div>
   );
