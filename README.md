@@ -124,7 +124,6 @@ export default App;
 - Let's add the following CSS to our App.css file
 
 ```
-
 * {
    box-sizing: border-box;
    padding: 0;
@@ -170,9 +169,10 @@ nav > ul > li > a:hover {
 }
 
 main {
-   background-color: #f1f1f1;
+   background-color: #fff;
    height: 80vh;
    padding: 2rem;
+   color: #fff;
 }
 
 footer {
@@ -184,7 +184,6 @@ footer {
    border-top: 1px solid;
 }
 
-
 ```
 
 
@@ -194,12 +193,13 @@ footer {
 
 
 ```
-
 .contact {
-   background-color: #00bec8;
+   background-color: #1d2e32;
    height: 100%;
+   width: 50%;
+   margin: 0 auto;
    padding: 1rem;
-   box-shadow: 1px 1px 10px 1px #000;
+   box-shadow: 1px 1px 10px 1px #000000;
 }
 
 .contact-form {
@@ -234,8 +234,7 @@ footer {
 }
 
 .contact-form > input[type="submit"]:hover {
-   color: #f5f5f5;
-   background-color: #00000040;
+   background-color: #00df6c;
    cursor: pointer;
 }
 
@@ -246,10 +245,11 @@ footer {
    font-weight: 600;
    background: #00df6c;
    border-radius: 0 3rem 0 3rem;
+   color: #000;
 }
 
 .required {
-   color: #ff4400;
+   color: #ff0000;
    font-size: 6px;
    margin-left: 0.3rem;
 }
@@ -259,12 +259,6 @@ footer {
    font-size: 6px;
    margin-left: 0.3rem;
 }
-
-/*
-=======================================
-==>        Animations  
-=========================================
-*/
 
 .animated {
    -webkit-animation-duration: 1s;
@@ -277,10 +271,6 @@ footer {
    -webkit-animation-name: fadeInUp;
    animation-name: fadeInUp;
 }
-
-/************************
- =       Fade UP
- *************************/
 
 @keyframes fadeInUp {
    from {
@@ -297,12 +287,6 @@ footer {
       transform: none;
    }
 }
-
-/*
- =======================================
- ==>        END-Animations  
- =======================================
- */
 
 
 

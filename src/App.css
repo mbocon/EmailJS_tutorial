@@ -43,9 +43,10 @@ nav > ul > li > a:hover {
 }
 
 main {
-   background-color: #f1f1f1;
+   background-color: #fff;
    height: 80vh;
    padding: 2rem;
+   color: #fff;
 }
 
 footer {

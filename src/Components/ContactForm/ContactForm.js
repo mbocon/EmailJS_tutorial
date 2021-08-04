@@ -45,11 +45,6 @@ export default function ContactForm() {
       const nameField = document.getElementById("name");
       const emailField = document.getElementById("email");
       const messageField = document.getElementById("message");
-      console.log(
-         nameField.value.length,
-         emailField.value.length,
-         messageField.value.length
-      );
 
       if (nameField.value.length !== 0) {
          setisFilled({
